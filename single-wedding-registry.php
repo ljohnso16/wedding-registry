@@ -3,11 +3,10 @@
  * The template for displaying all single posts and attachments
  *
  * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
  */
-
-get_header(); ?>
+get_header(); 
+	
+	?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
@@ -15,9 +14,12 @@ get_header(); ?>
 		<?php
 		// Start the loop.
 		while ( have_posts() ) : the_post();
+			
+			
+			
 			$couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) . ' & ' . get_post_meta( get_the_ID(), 'wedding_registry_field_b', true );
 			the_post_thumbnail('medium');
-			echo $couple_name.'<br>';
+			echo '<br>'.$couple_name.'<br>';
 			the_content();
 			echo '
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">

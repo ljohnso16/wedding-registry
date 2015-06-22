@@ -81,6 +81,14 @@ function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) 
  
     }
 }
+function enque_bootstrap(){
+    wp_register_style( 'bootstrap', plugins_url('bootstrap/css/bootstrap.min.css', __FILE__ ));
+    wp_enqueue_style( 'bootstrap' );  
+    wp_register_script( 'bootstrap', plugins_url('bootstrap/js/bootstrap.min.js', __FILE__ ));
+    wp_enqueue_script( 'bootstrap' );  
+}
+
+add_action('wp_enqueue_scripts', 'enque_bootstrap');
 
 add_filter( 'template_include', 'include_reg_template_function', 1 );
 function include_reg_template_function( $template_path ) {
