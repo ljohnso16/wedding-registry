@@ -8,6 +8,7 @@ Author: Lloyd Johnson
 Author URI: http://github.com/ljohnso16
 License: GPLv2
 */
+
 add_action( 'init', 'create_wedding_registy' );
 function create_wedding_registy() {
     register_post_type( 'wedding_registry',
@@ -30,7 +31,7 @@ function create_wedding_registy() {
  
             'public' => true,
             'menu_position' => 15,
-            'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
+            'supports' => array('title','editor', 'comments', 'thumbnail'),
             'taxonomies' => array( '' ),//will add this custom taxonomy later
             'menu_icon' => plugins_url(	 'images/small-icon.png', __FILE__ ),
             'has_archive' => false
@@ -39,42 +40,69 @@ function create_wedding_registy() {
 }
 add_action( 'admin_init', 'wedding_registry_admin' );
 function wedding_registry_admin() {
-    add_meta_box( 'wedding_registry_a_meta_box',
-        'First and Last Name of Husband/Wife',
-        'display_wedding_registry_meta_box_a',
-        'wedding_registries_a', 'normal', 'high'
-    );
-    add_meta_box( 'wedding_registry_b_meta_box',
-        'First and Last Name of Husband/Wife',
-        'display_wedding_registry_meta_box_b',
-        'wedding_registries_b', 'normal', 'high'
+    add_meta_box( 'wedding_registry_meta_box',
+        'First and Last Name of Couple',
+        'display_wedding_registry_meta_box',
+        'wedding_registry', 'side', 'default'
     );
 
 }
-function display_wedding_registry_meta_box_a( $wedding_registry ) {
+function display_wedding_registry_meta_box( $wedding_registry ) {
     // Retrieve current name based on registry ID
-    $movie_director = esc_html( get_post_meta( $wedding_registry->ID, 'movie_director', true ) );
-    $movie_rating = intval( get_post_meta( $wedding_registry->ID, 'movie_rating', true ) );
+    $wedding_registry_field_a = esc_html( get_post_meta( $wedding_registry->ID, 'wedding_registry_field_a', true ) );
+    $wedding_registry_field_b = esc_html( get_post_meta( $wedding_registry->ID, 'wedding_registry_field_b', true ) );
+
     ?>
     <table>
         <tr>
-            <td style="width: 100%">Movie Director</td>
-            <td><input type="text" size="80" name="movie_review_director_name" value="<?php echo $movie_director; ?>" /></td>
+            <td style="width: 100%">Name</td>
+            <td><input style="width: 160px" type="text" size="80" name="wedding_registry_field_a" value="<?php echo $wedding_registry_field_a; ?>" /></td>
         </tr>
         <tr>
-            <td style="width: 150px">Movie Rating</td>
-            <td>
-                <select style="width: 100px" name="movie_review_rating">
-                <?php
-                // Generate all items of drop-down list
-                for ( $rating = 5; $rating >= 1; $rating -- ) {
-                ?>
-                    <option value="<?php echo $rating; ?>" <?php echo selected( $rating, $movie_rating ); ?>>
-                    <?php echo $rating; ?> stars <?php } ?>
-                </select>
-            </td>
+            <td style="width: 100%">Name</td>
+            <td><input style="width: 160px" type="text" size="80" name="wedding_registry_field_b" value="<?php echo $wedding_registry_field_b; ?>" /></td>
         </tr>
+
     </table>
     <?php
 }
+
+add_action( 'save_post', 'add_wedding_registry_fields', 10, 2 );
+function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) {
+    // Check post type for Registry 
+    if ( $wedding_registry->post_type == 'wedding_registry' ) {
+        // Store data in post meta table if present in post data
+        if ( isset( $_POST['wedding_registry_field_a'] ) && $_POST['wedding_registry_field_a'] != '' ) {
+            update_post_meta( $wedding_registry_id, 'wedding_registry_field_a', $_POST['wedding_registry_field_a'] );
+        }
+    if ( isset( $_POST['wedding_registry_field_b'] ) && $_POST['wedding_registry_field_b'] != '' ) {
+            update_post_meta( $wedding_registry_id, 'wedding_registry_field_b', $_POST['wedding_registry_field_b'] );
+        }
+ 
+    }
+}
+
+add_filter( 'template_include', 'include_reg_template_function', 1 );
+function include_reg_template_function( $template_path ) {
+    if ( get_post_type() == 'wedding_registry' ) {
+        if ( is_single() ) {
+            // checks if the file exists in the theme first,
+            // otherwise serve the file from the plugin
+            if ( $theme_file = locate_template( array ( 'single-wedding-registry.php' ) ) ) {
+                $template_path = $theme_file;
+            } else {
+                $template_path = plugin_dir_path( __FILE__ ) . '/single-wedding-registry.php';
+            }
+        }
+    }
+    return $template_path;
+}
+
+add_action('do_meta_boxes', 'change_image_box');
+function change_image_box()
+{
+    remove_meta_box( 'postimagediv', 'wedding_registry', 'side' );
+    add_meta_box('postimagediv', __('Couple Photo'), 'post_thumbnail_meta_box', 'wedding_registry', 'side', 'default');
+}
+
 ?>
