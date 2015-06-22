@@ -40,12 +40,12 @@ function create_wedding_registy() {
 add_action( 'admin_init', 'wedding_registry_admin' );
 function wedding_registry_admin() {
     add_meta_box( 'wedding_registry_a_meta_box',
-        'First and Last Name Husband/Wife',
+        'First and Last Name of Husband/Wife',
         'display_wedding_registry_meta_box_a',
         'wedding_registries_a', 'normal', 'high'
     );
     add_meta_box( 'wedding_registry_b_meta_box',
-        'First and Last Name Husband/Wife',
+        'First and Last Name of Husband/Wife',
         'display_wedding_registry_meta_box_b',
         'wedding_registries_b', 'normal', 'high'
     );
