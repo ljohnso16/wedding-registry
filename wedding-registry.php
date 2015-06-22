@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Wedding Registry
-Plugin URI: http://github.com/ljohnso16/TBD
-Description: TBD
+Plugin URI: https://github.com/ljohnso16/wedding-registry/
+Description: Custom Wedding Registry for Honeymoon Destination Weddings.
 Version: 1.0
 Author: Lloyd Johnson
 Author URI: http://github.com/ljohnso16
