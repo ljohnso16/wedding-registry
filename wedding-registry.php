@@ -31,7 +31,7 @@ function create_wedding_registy() {
  
             'public' => true,
             'menu_position' => 15,
-            'supports' => array('title','editor', 'comments', 'thumbnail'),
+            'supports' => array('editor', 'comments', 'thumbnail'),
             'taxonomies' => array( '' ),//will add this custom taxonomy later
             'menu_icon' => plugins_url(	 'images/small-icon.png', __FILE__ ),
             'has_archive' => false
@@ -112,5 +112,21 @@ function change_image_box()
     remove_meta_box( 'postimagediv', 'wedding_registry', 'side' );
     add_meta_box('postimagediv', __('Couple Photo'), 'post_thumbnail_meta_box', 'wedding_registry', 'side', 'default');
 }
+
+
+function seoUrl($string) {
+    //Lower case everything
+    $string = strtolower($string);
+    //Make alphanumeric (removes all other characters)
+    $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+    //Clean up multiple dashes or whitespaces
+    $string = preg_replace("/[\s-]+/", " ", $string);
+    //Convert whitespaces and underscore to dash
+    $string = preg_replace("/[\s_]/", "-", $string);
+    return $string;
+}
+
+
+
 
 ?>
