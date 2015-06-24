@@ -8,6 +8,7 @@ Author: Lloyd Johnson
 Author URI: http://github.com/ljohnso16
 License: GPLv2
 */
+include( plugin_dir_path( __FILE__ ) . 'date.inc.php');
 
 add_action( 'init', 'create_wedding_registy' );
 function create_wedding_registy() {
@@ -37,19 +38,9 @@ function create_wedding_registy() {
             'has_archive' => false,
             'rewrite' => array('slug' => 'registry', 'with_front' => FALSE)
         )
-    );
-    // global $wp_rewrite;
-    // $registry_structure = '/registry/%registry%';
-    // $wp_rewrite->add_rewrite_tag("%registry%", '([^/]+)', "registry=");
-    // $wp_rewrite->add_permastruct('registry', $registry_structure, false);    
+    ); 
 }
-// add_filter('post_type_link', 'gallery_permalink', 10, 3);   
-// // Adapted from get_permalink function in wp-includes/link-template.php
-// function gallery_permalink($permalink, $registry_id, $leavename) {
-//     $post = get_post($post_id);
- 
-//     return $permalink;
-// }
+
 function wedding_registry_rewrite_flush() {
     create_wedding_registy();
     flush_rewrite_rules();
@@ -70,14 +61,7 @@ function wedding_registry_admin() {
 
 
 }
-function display_wedding_registry_date_meta_box($wedding_registry){
-    $date = get_post_meta($wedding_registry->ID, 'Date', true); ?>
-    <p>Date (mm/dd/yy):</p>
-    <input id="event-date" name="event-date" type="text" value="<?php echo $date; ?>" />
-  
 
-<?php
-}
 function display_wedding_registry_meta_box( $wedding_registry ) {
     // Retrieve current name based on registry ID
     $wedding_registry_field_a = esc_html( get_post_meta( $wedding_registry->ID, 'wedding_registry_field_a', true ) );
@@ -123,28 +107,20 @@ function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) 
             $title .= $_POST['wedding_registry_field_b'];
             update_post_meta( $wedding_registry_id, 'wedding_registry_field_b', $_POST['wedding_registry_field_b'] );
         }
-        if ( isset( $_POST['event-date'] ) && $_POST['event-date'] != '' ) {
 
-           $date = trim( $_POST['event-date'] );
-    
-        
-              // Validate that what was entered is of the form: 00/00/00
-            if(preg_match('(^\d{1,2}\/\d{1,2}\/\d{2}$)', $date) ) {
-                update_post_meta($wedding_registry_id, 'Date', $date);   
-        } 
         global $wpdb;//defines global wpdb, this alows us to update the db
         $wpdb->update( $wpdb->posts, array( 'post_title' => seoUrl($title) ), array( 'ID' => $wedding_registry_id ) ); 
         $wp_rewrite->flush_rules();
     }
 }
 function enque_bootstrap(){
-    wp_register_style( 'bootstrap', plugins_url('bootstrap/css/bootstrap.min.css', __FILE__ ,'4.0','css'));
+    wp_register_style( 'bootstrap', plugins_url('bootstrap/css/bootstrap.min.css', __FILE__ ),'0','css');
     wp_enqueue_style( 'bootstrap' );  
 
-    wp_register_style( 'bootstrap-theme', plugins_url('bootstrap/css/bootstrap-theme.min.css', __FILE__ ,'4.0','css'));
+    wp_register_style( 'bootstrap-theme', plugins_url('bootstrap/css/bootstrap-theme.min.css', __FILE__ ),'0','css');
     wp_enqueue_style( 'bootstrap-theme' );  
 
-    wp_register_script( 'bootstrap', plugins_url('bootstrap/js/bootstrap.min.js', __FILE__,'4.0',FALSE ));
+    wp_register_script( 'bootstrap', plugins_url('bootstrap/js/bootstrap.min.js', __FILE__ ),'0',FALSE );
     wp_enqueue_script( 'bootstrap' );  
 }
 
@@ -172,30 +148,7 @@ function change_image_box()
     remove_meta_box( 'postimagediv', 'wedding_registry', 'side' );
     add_meta_box('postimagediv', __('Couple Photo'), 'post_thumbnail_meta_box', 'wedding_registry', 'side', 'default');
 }
-function event_jquery_datepicker() {
-    wp_enqueue_script(
-        'jquery-ui-datepicker',
-        get_bloginfo('template_directory') . '/jquery-ui-datepicker/jquery-ui-1.8.11.custom.min.js',
-        array('jquery')
-    );
- 
-    wp_enqueue_script(
-        'datepicker',
-        get_bloginfo('template_directory') . '/jquery-ui-datepicker/datepicker.js',
-        array('jquery', 'jquery-ui-datepicker')
-    );
-}
-add_action('admin_print_scripts-post-new.php', 'event_jquery_datepicker');
-add_action('admin_print_scripts-post.php', 'event_jquery_datepicker');
 
-function event_jquery_datepicker_css() {
-    wp_enqueue_style(
-        'jquery-ui-datepicker',
-        get_bloginfo('template_directory') . '/jquery-ui-datepicker/css/smoothness/jquery-ui-1.8.11.custom.css'
-    );
-}
-add_action('admin_print_styles-post-new.php', 'event_jquery_datepicker_css');
-add_action('admin_print_styles-post.php', 'event_jquery_datepicker_css');
 
 
 
