@@ -130,7 +130,7 @@ function enque_bootstrap(){
     wp_enqueue_script( 'bootstrap' );  
 }
 
-add_action('wp_enqueue_scripts', 'enque_bootstrap');
+add_action('wp_enqueue_scripts', 'enque_bootstrap',12);
 
 add_filter( 'template_include', 'include_reg_template_function', 1 );
 function include_reg_template_function( $template_path ) {
