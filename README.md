@@ -1,0 +1,1 @@
+Current incompatiblity with Twentyfifteen WP theme. bootstrap is confilcting with the built in style sheets.
