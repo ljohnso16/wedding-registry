@@ -14,14 +14,14 @@ $couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) .
 		    </div>
 	        <div class="col-lg-4 col-md-5 col-xs-12"><?php the_content();?></div>
 			<div class="col-lg-3 col-md-3 col-xs-12 col-lg-offset-1">
-<div class="row text-centeer">
-				<div class="col-xs-4 col-lg-4 col-md-4">Wedding Date</div> 
-				<div class="col-xs-4 col-lg-4 col-md-4">Website</div>
-				<div class="col-xs-4 col-lg-4 col-md-4">Location</div>
-</div>
+				<div class="row text-centeer">
+					<div class="col-xs-4 col-lg-4 col-md-4">Wedding Date</div> 
+					<div class="col-xs-4 col-lg-4 col-md-4">Website</div>
+					<div class="col-xs-4 col-lg-4 col-md-4">Location</div>
+				</div>
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title text-center">Paypal Secure Form</h3>
+					 	<h3 class="panel-title text-center">Paypal Secure Form</h3>
 					</div>
 					<div class="panel-body">
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
