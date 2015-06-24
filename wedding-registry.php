@@ -9,6 +9,7 @@ Author URI: http://github.com/ljohnso16
 License: GPLv2
 */
 include( plugin_dir_path( __FILE__ ) . 'date.inc.php');
+include( plugin_dir_path( __FILE__ ) . 'metabox.inc.php');//currently empty
 
 add_action( 'init', 'create_wedding_registy' );
 function create_wedding_registy() {
@@ -58,8 +59,11 @@ function wedding_registry_admin() {
         'display_wedding_registry_date_meta_box',
         'wedding_registry', 'side', 'default'
     );    
-
-
+    add_meta_box( 'wedding_registry_url_meta_box',
+        'Wedding Site URL',
+        'display_wedding_registry_url_meta_box',
+        'wedding_registry', 'side', 'default'
+    );  
 }
 
 function display_wedding_registry_meta_box( $wedding_registry ) {
