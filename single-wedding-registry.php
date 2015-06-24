@@ -1,4 +1,5 @@
- <?php wp_head(); 
+ <?php 
+wp_head(); 
 while ( have_posts() ) : the_post();					
 $couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) . ' & ' . get_post_meta( get_the_ID(), 'wedding_registry_field_b', true );?>
 <div class="container-fluid">
@@ -41,7 +42,7 @@ $couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) .
 							<option value="Give">Give $6,400.00 USD</option>
 							<option value="Give">Give $128,000.00 USD</option>
 							</select> </td></tr>
-							<tr><td><input type="hidden" name="on1" value="Couple Name">Couple Name</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo $couple_name; ?>" style="width:100%"></td></tr>
+							<tr><td><input type="hidden" name="on1" value="Couple Name">Couple Name</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo $couple_name; ?>"></td></tr>
 							</table>
 							<input type="hidden" name="currency_code" value="USD">
 							<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
