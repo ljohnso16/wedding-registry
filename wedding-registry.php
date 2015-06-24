@@ -59,11 +59,11 @@ function wedding_registry_admin() {
         'display_wedding_registry_date_meta_box',
         'wedding_registry', 'side', 'default'
     );    
-    add_meta_box( 'wedding_registry_url_meta_box',
-        'Wedding Site URL',
-        'display_wedding_registry_url_meta_box',
-        'wedding_registry', 'side', 'default'
-    );  
+    // add_meta_box( 'wedding_registry_url_meta_box',
+    //     'Wedding Site URL',
+    //     'display_wedding_registry_url_meta_box',
+    //     'wedding_registry', 'side', 'default'
+    // );  
 }
 
 function display_wedding_registry_meta_box( $wedding_registry ) {
@@ -111,7 +111,9 @@ function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) 
             $title .= $_POST['wedding_registry_field_b'];
             update_post_meta( $wedding_registry_id, 'wedding_registry_field_b', $_POST['wedding_registry_field_b'] );
         }
-
+        if ( isset( $_POST['event_date'] ) && $_POST['event_date'] != '' ) {
+            update_post_meta( $wedding_registry_id, 'event_date', $_POST['event_date'] );
+        }
         global $wpdb;//defines global wpdb, this alows us to update the db
         $wpdb->update( $wpdb->posts, array( 'post_title' => seoUrl($title) ), array( 'ID' => $wedding_registry_id ) ); 
         $wp_rewrite->flush_rules();
