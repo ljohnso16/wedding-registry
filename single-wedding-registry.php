@@ -5,13 +5,11 @@ $couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) .
 <div class="container-fluid">
 	<div class="well">
 		<div class="row">
-	        <div class="col-lg-3 col-md-4 col-xs-12 row">
-	        	<div class="col-lg-12 col-md-12 col-xs-12 text-center">
-		        	<p class="text-center" style="vertical-align: middle;"><?php the_post_thumbnail('medium',array('class'=>'img-responsive center-block','alt'=> $couple_name )); ?></p>
-		        </div>
-		        <div class="col-lg-12 col-md-12 col-xs-12 text-center">
-		        	<p><?php echo $couple_name; ?></p>
-		        </div>
+	        <div class="col-lg-3 col-md-4 col-xs-12">
+		        	<p><?php the_post_thumbnail('medium',array('class'=>'img-responsive center-block','alt'=> $couple_name )); ?></p>
+		        
+		        	<p class="text-center"><?php echo $couple_name; ?></p>
+		        
 		    </div>
 	        <div class="col-lg-4 col-md-5 col-xs-12"><?php the_content();?></div>
 			<div class="col-lg-3 col-md-3 col-xs-12 col-lg-offset-1">
