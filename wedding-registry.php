@@ -8,7 +8,6 @@ Author: Lloyd Johnson
 Author URI: http://github.com/ljohnso16
 License: GPLv2
 */
-include( plugin_dir_path( __FILE__ ) . 'date.inc.php');
 include( plugin_dir_path( __FILE__ ) . 'metabox.inc.php');
 include( plugin_dir_path( __FILE__ ) . 'theme.inc.php');//currently empty
 
@@ -42,16 +41,18 @@ function create_wedding_registy() {
     ); 
 }
 
-function wedding_registry_rewrite_flush() {
-    create_wedding_registy();
-    flush_rewrite_rules();
-}
+
 
 register_activation_hook( __FILE__, 'wedding_registry_rewrite_flush' );
 add_action( 'init', 'create_wedding_registy' );
 add_action( 'admin_init', 'wedding_registry_admin' );
-add_action( 'save_post', 'add_wedding_registry_fields', 10, 2 );
 add_action('wp_enqueue_scripts', 'enque_bootstrap',12);
 add_filter( 'template_include', 'include_reg_template_function', 1 );
 add_action('do_meta_boxes', 'change_image_box');
+add_action('admin_print_scripts-post-new.php', 'events_jquery_datepicker');
+add_action('admin_print_scripts-post.php', 'events_jquery_datepicker');
+add_action('admin_print_styles-post-new.php', 'events_jquery_datepicker_css');
+add_action('admin_print_styles-post.php', 'events_jquery_datepicker_css');
+add_action( 'save_post', 'add_wedding_registry_fields', 10, 2 );
+//add_action('save_post', 'events_save_meta_box');
 ?>

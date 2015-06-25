@@ -1,7 +1,29 @@
  <?php 
 wp_head(); 
 while ( have_posts() ) : the_post();					
-$couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) . ' & ' . get_post_meta( get_the_ID(), 'wedding_registry_field_b', true );?>
+
+$thumb_id = get_post_thumbnail_id();
+$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+$thumb_url = $thumb_url_array[0];
+$couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) . ' & ' . get_post_meta( get_the_ID(), 'wedding_registry_field_b', true );
+$new_title = $couple_name .'\'s Wedding Registry';
+$event_date = get_post_meta( get_the_ID(), 'event-date', true); 
+?>
+
+<title> <?php echo $new_title; ?></title>
+
+<meta property="og:title" content="<?php echo $new_title; ?>" />
+<meta property="og:image" content="<?php echo $thumb_url; ?>" />
+<meta property="og:description" content="<?php echo $couple_name . ' are getting married! Come see their Honeymoon Registry and contribute to their trip.' . get_the_content(); ?>">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=288590654507288";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="container-fluid">
 	<div class="well">
 		<div class="row">
@@ -11,13 +33,20 @@ $couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) .
 		        	<p class="text-center"><?php echo $couple_name; ?></p>
 		        
 		    </div>
-	        <div class="col-lg-4 col-md-5 col-xs-12"><?php the_content();?></div>
-			<div class="col-lg-3 col-md-3 col-xs-12 col-lg-offset-1">
-				<div class="row text-centeer">
-					<div class="col-xs-4 col-lg-4 col-md-4">Wedding Date</div> 
-					<div class="col-xs-4 col-lg-4 col-md-4">Website</div>
-					<div class="col-xs-4 col-lg-4 col-md-4">Location</div>
+	        <div class="col-lg-4 col-md-5 col-xs-12"><?php the_content();?>
+	   			<div class="row text-center">
+					<div class="col-xs-4 col-lg-4 col-md-4"><p>Website</p></div>
+					<div class="col-xs-4 col-lg-4 col-md-4"><p>Save the Date</p> <p><?php if(!empty($event_date))echo $event_date; ?></p></div>
+					<div class="col-xs-4 col-lg-4 col-md-4"><p>Location</p></div>
 				</div>
+	   			<div class="row text-center" id="social-row">
+	   				<div class="col-xs-6 col-md-6 col-lg-6"><p><div class="fb-share-button" data-href="<?php the_permalink(); ?>" data-layout="button_count"></div></p></div>
+	   				<div class="col-xs-6 col-md-6 col-lg-6"><p><a href="https://twitter.com/share" class="twitter-share-button" data-via="AMT_Travel">Tweet</a></p><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+
+	   			</div>
+
+	        </div>
+			<div class="col-lg-3 col-md-3 col-xs-12 col-lg-offset-1">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 					 	<h3 class="panel-title text-center">Paypal Secure Form</h3>

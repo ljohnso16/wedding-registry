@@ -10,10 +10,10 @@ function wedding_registry_admin() {
         'display_wedding_registry_date_meta_box',
         'wedding_registry', 'side', 'default'
     );    
-    // add_meta_box( 'wedding_registry_url_meta_box',
-    //     'Wedding Site URL',
-    //     'display_wedding_registry_url_meta_box',
-    //     'wedding_registry', 'side', 'default'
+    // add_meta_box( 'wedding_registry_link_meta_box',
+        // 'Wedding Site Link',
+        // 'display_wedding_registry_link_meta_box',
+        // 'wedding_registry', 'side', 'default'
     // );  
 }
 function change_image_box()
@@ -40,6 +40,13 @@ function display_wedding_registry_meta_box( $wedding_registry ) {
     </table>
     <?php
 }
+function display_wedding_registry_date_meta_box($wedding_registry){
+    $date = get_post_meta($wedding_registry->ID, 'event-date', true); 
+    ?>
+    <p>Date (mm/dd/yy):</p>
+    <input id="event-date" name="event-date" type="text" value="<?php echo $date; ?>" />
+	<?php
+}
 function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) {
     // Check post type for Registry 
     if ( $wedding_registry->post_type == 'wedding_registry' ) {
@@ -54,11 +61,18 @@ function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) 
             $title .= $_POST['wedding_registry_field_b'];
             update_post_meta( $wedding_registry_id, 'wedding_registry_field_b', $_POST['wedding_registry_field_b'] );
         }
-        if ( isset( $_POST['event_date'] ) && $_POST['event_date'] != '' ) {
-            update_post_meta( $wedding_registry_id, 'event_date', $_POST['event_date'] );
+        if ( isset( $_POST['event-date'] ) && $_POST['event-date'] != '' ) {
+            update_post_meta( $wedding_registry_id, 'event-date', $_POST['event-date'] );
         }
         global $wpdb;//defines global wpdb, this alows us to update the db
         $wpdb->update( $wpdb->posts, array( 'post_title' => seoUrl($title) ), array( 'ID' => $wedding_registry_id ) ); 
         $wp_rewrite->flush_rules();
     }
+}
+function events_jquery_datepicker() {
+	wp_enqueue_script('jquery-ui-datepicker');
+	wp_enqueue_script('wedding-registry-datepicker',plugins_url('datepicker.js', __FILE__ ),array('jquery', 'jquery-ui-datepicker'));
+}
+function events_jquery_datepicker_css() {
+	wp_enqueue_style('jquery-ui-datepicker',plugins_url('/smoothness/jquery-ui-1.8.11.custom.css', __FILE__ ));
 }
