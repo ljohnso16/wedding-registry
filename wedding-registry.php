@@ -20,6 +20,9 @@ function enque_bootstrap(){
     wp_enqueue_script( 'jquery' );      //this enables jquery via wp includes so no registering style
     wp_register_script( 'bootstrap', plugins_url('resources/bootstrap/js/bootstrap.min.js', __FILE__ ),'0',FALSE );
     wp_enqueue_script( 'bootstrap' );  
+	
+    wp_register_script( 'my_disqus', plugins_url('resources/disqus.js', __FILE__ ),'0',FALSE );
+    wp_enqueue_script( 'my_disqus' );  	
 }
 function include_reg_template_function( $template_path ) {
 

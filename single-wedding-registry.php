@@ -1,5 +1,5 @@
 <?php
-get_header();
+wp_head();
 while ( have_posts() ) : the_post();					
 
 $thumb_id = get_post_thumbnail_id();
@@ -23,12 +23,22 @@ $event_date = get_post_meta( get_the_ID(), 'event-date', true);
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=288590654507288";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'ljohnso16';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
 <div class="container-fluid">
 	<div class="well">
 		<div class="row">
 	        <div class="col-lg-3 col-md-4 col-xs-12">
-		        	<p><?php the_post_thumbnail('medium',array('class'=>'img-responsive center-block','alt'=> $couple_name )); ?></p>
+		        	<p><?php the_post_thumbnail('medium',array('class'=>'center-block','alt'=> $couple_name )); ?></p>
 		        
 		        	<p class="text-center"><?php echo $couple_name; ?></p>
 		        
@@ -82,10 +92,14 @@ $event_date = get_post_meta( get_the_ID(), 'event-date', true);
 					</div>
 				</div>
 			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div id="disqus_thread"></div>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			</div>
 		</div>	
 	</div>
 </div>
 <?php 
 	endwhile; 
-	get_footer(); 
+	//get_footer(); 
 ?>
