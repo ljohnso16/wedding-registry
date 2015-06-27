@@ -35,7 +35,7 @@ function create_wedding_registy() {
             'supports' => array('editor', 'comments', 'thumbnail'),
             'taxonomies' => array( '' ),//will add this custom taxonomy later
             'menu_icon' => plugins_url(	 'images/small-icon.png', __FILE__ ),
-            'has_archive' => false,
+            'has_archive' => true,
             'rewrite' => array('slug' => 'registry', 'with_front' => FALSE)
         )
     ); 

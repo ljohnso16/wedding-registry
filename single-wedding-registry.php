@@ -1,5 +1,5 @@
- <?php 
-wp_head(); 
+<?php
+get_header();
 while ( have_posts() ) : the_post();					
 
 $thumb_id = get_post_thumbnail_id();
@@ -35,7 +35,11 @@ $event_date = get_post_meta( get_the_ID(), 'event-date', true);
 		    </div>
 	        <div class="col-lg-4 col-md-5 col-xs-12"><?php the_content();?>
 	   			<div class="row text-center">
-					<div class="col-xs-4 col-lg-4 col-md-4"><p>Website</p></div>
+					<div class="col-xs-4 col-lg-4 col-md-4">
+
+						<?php if(!empty(get_post_meta( get_the_ID(), 'wedding_registry_url', true ))&& !empty(get_post_meta( get_the_ID(), 'wedding_registry_url_title', true )))
+						echo '<a href="'.get_post_meta( get_the_ID(), 'wedding_registry_url', true ).'">'.get_post_meta( get_the_ID(), 'wedding_registry_url_title', true ).'</a>';?>
+					</div>
 					<div class="col-xs-4 col-lg-4 col-md-4"><p>Save the Date</p> <p><?php if(!empty($event_date))echo $event_date; ?></p></div>
 					<div class="col-xs-4 col-lg-4 col-md-4"><p>Location</p></div>
 				</div>
@@ -83,5 +87,5 @@ $event_date = get_post_meta( get_the_ID(), 'event-date', true);
 </div>
 <?php 
 	endwhile; 
-	wp_footer(); 
+	get_footer(); 
 ?>

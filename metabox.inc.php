@@ -10,11 +10,30 @@ function wedding_registry_admin() {
         'display_wedding_registry_date_meta_box',
         'wedding_registry', 'side', 'default'
     );    
-    // add_meta_box( 'wedding_registry_link_meta_box',
-        // 'Wedding Site Link',
-        // 'display_wedding_registry_link_meta_box',
-        // 'wedding_registry', 'side', 'default'
-    // );  
+    add_meta_box( 'wedding_registry_link_meta_box',
+        'Wedding Site Link',
+        'display_wedding_registry_link_meta_box',
+        'wedding_registry', 'side', 'default'
+    );  
+}
+function display_wedding_registry_link_meta_box( $wedding_registry ) {
+    // Retrieve current name based on registry ID
+    $wedding_registry_url_title = esc_html( get_post_meta( $wedding_registry->ID, 'wedding_registry_url_title', true ) );
+    $wedding_registry_url = esc_html( get_post_meta( $wedding_registry->ID, 'wedding_registry_url', true ) );
+
+    ?>
+    <table>
+        <tr>
+            <td style="width: 100%">Title</td>
+            <td><input style="width: 160px" type="text" size="80" name="wedding_registry_url_title" value="<?php echo $wedding_registry_url_title; ?>" /></td>
+        </tr>
+        <tr>
+            <td style="width: 100%">URL</td>
+            <td><input style="width: 160px" type="text" size="80" name="wedding_registry_url" value="<?php echo $wedding_registry_url; ?>" /></td>
+        </tr>
+
+    </table>
+    <?php
 }
 function change_image_box()
 {
@@ -64,6 +83,16 @@ function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) 
         if ( isset( $_POST['event-date'] ) && $_POST['event-date'] != '' ) {
             update_post_meta( $wedding_registry_id, 'event-date', $_POST['event-date'] );
         }
+        if ( isset( $_POST['wedding_registry_url_title'] ) && $_POST['wedding_registry_url_title'] != '' ) {
+            update_post_meta( $wedding_registry_id, 'wedding_registry_url_title', $_POST['wedding_registry_url_title'] );
+        }
+        if ( isset( $_POST['wedding_registry_url'] ) && $_POST['wedding_registry_url'] != '' ) {
+            if(filter_var($_POST['wedding_registry_url'], FILTER_VALIDATE_URL))
+            {     
+                update_post_meta( $wedding_registry_id, 'wedding_registry_url', $_POST['wedding_registry_url'] );
+            }
+            
+        }                
         global $wpdb;//defines global wpdb, this alows us to update the db
         $wpdb->update( $wpdb->posts, array( 'post_title' => seoUrl($title) ), array( 'ID' => $wedding_registry_id ) ); 
         $wp_rewrite->flush_rules();

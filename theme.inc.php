@@ -11,15 +11,16 @@ function enque_bootstrap(){
     wp_enqueue_script( 'bootstrap' );  
 }
 function include_reg_template_function( $template_path ) {
-    if ( get_post_type() == 'wedding_registry' ) {
-        if ( is_single() ) {
-            // checks if the file exists in the theme first,
-            // otherwise serve the file from the plugin
-            if ( $theme_file = locate_template( array ( 'single-wedding-registry.php' ) ) ) {
-                $template_path = $theme_file;
-            } else {
-                $template_path = plugin_dir_path( __FILE__ ) . '/single-wedding-registry.php';
-            }
+    if ( get_post_type() == 'wedding_registry' ) 
+    {
+        if ( is_single() ) 
+        {
+            $template_path = plugin_dir_path( __FILE__ ) . '/single-wedding-registry.php';
+            
+        }
+        if ( is_archive() )
+        {
+            $template_path = plugin_dir_path( __FILE__ ) . '/single-wedding-registry.php';
         }
     }
     return $template_path;
