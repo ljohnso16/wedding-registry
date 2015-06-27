@@ -100,8 +100,8 @@ function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) 
 }
 function events_jquery_datepicker() {
 	wp_enqueue_script('jquery-ui-datepicker');
-	wp_enqueue_script('wedding-registry-datepicker',plugins_url('datepicker.js', __FILE__ ),array('jquery', 'jquery-ui-datepicker'));
+	wp_enqueue_script('wedding-registry-datepicker',plugins_url('resources/datepicker.js', __FILE__ ),array('jquery', 'jquery-ui-datepicker'));
 }
 function events_jquery_datepicker_css() {
-	wp_enqueue_style('jquery-ui-datepicker',plugins_url('/smoothness/jquery-ui-1.8.11.custom.css', __FILE__ ));
+	wp_enqueue_style('jquery-ui-datepicker',plugins_url('resources/smoothness/jquery-ui-1.8.11.custom.css', __FILE__ ));
 }
