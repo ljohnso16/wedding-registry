@@ -15,14 +15,18 @@ function enque_bootstrap(){
     wp_enqueue_style( 'bootstrap' ); 
     wp_register_style( 'bootstrap', plugins_url('resources/bootstrap/css/bootstrap.min.css', __FILE__ ),'0','css');
     wp_enqueue_style( 'bootstrap' );  
-    wp_register_style( 'bootstrap-theme', plugins_url('resources/bootstrap/css/bootstrap-theme.min.css', __FILE__ ),'0','css');
+    wp_register_style( 'bootstrap-theme', plugins_url('resources/bootstrap/css/bootstrap-theme.min.css', __FILE__ )	,'0','css');
     wp_enqueue_style( 'bootstrap-theme' );  
     wp_enqueue_script( 'jquery' );      //this enables jquery via wp includes so no registering style
     wp_register_script( 'bootstrap', plugins_url('resources/bootstrap/js/bootstrap.min.js', __FILE__ ),'0',FALSE );
     wp_enqueue_script( 'bootstrap' );  
+    wp_register_script( 'my_collapse', plugins_url('resources/collapse.js', __FILE__ ),'0',FALSE );
+    wp_enqueue_script( 'my_collapse' );  
+
+    wp_register_style( 'wedding_registry_style', plugins_url('resources/wedding-registry-style.css', __FILE__ ),'0','css');
+    wp_enqueue_style( 'wedding_registry_style' );  	
 	
-    wp_register_script( 'my_disqus', plugins_url('resources/disqus.js', __FILE__ ),'0',FALSE );
-    wp_enqueue_script( 'my_disqus' );  	
+	
 }
 function include_reg_template_function( $template_path ) {
 
@@ -61,7 +65,7 @@ function create_wedding_registy() {
  
             'public' => true,
             'menu_position' => 15,
-            'supports' => array('editor', 'comments', 'thumbnail'),
+            'supports' => array('editor', 'thumbnail'),
             'taxonomies' => array( '' ),//will add this custom taxonomy later
             'menu_icon' => plugins_url(	 'resources/images/small-icon.png', __FILE__ ),
             'has_archive' => true,
@@ -72,7 +76,7 @@ function create_wedding_registy() {
 
 
 
-//register_activation_hook( __FILE__, 'wedding_registry_rewrite_flush' );
+register_activation_hook( __FILE__, 'wedding_registry_rewrite_flush' );
 add_action( 'init', 'create_wedding_registy' );
 add_action( 'admin_init', 'wedding_registry_admin' );
 add_action('wp_enqueue_scripts', 'enque_bootstrap',12);
