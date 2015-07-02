@@ -13,7 +13,7 @@ function wedding_registry_admin() {
     add_meta_box( 'wedding_registry_link_meta_box',
         'Wedding Site Link',
         'display_wedding_registry_link_meta_box',
-        'wedding_registry', 'normal', 'core'
+        'wedding_registry', 'side', 'default'
     );  
 }
 function display_wedding_registry_link_meta_box( $wedding_registry ) {
@@ -91,10 +91,6 @@ function add_wedding_registry_fields( $wedding_registry_id, $wedding_registry ) 
             {     
                 update_post_meta( $wedding_registry_id, 'wedding_registry_url', $_POST['wedding_registry_url'] );
             }
-			else
-			{
-				return;
-			}
             
         }                
         global $wpdb;//defines global wpdb, this alows us to update the db

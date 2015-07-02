@@ -7,17 +7,6 @@
 	margin-top: -20px;
 	font-size: 15px;
 }
-@media screen and (max-width: 768px) {
-    .lead {
-        font-size:20px;
-    }
-}
- 
-@media screen and (max-width: 568px) {
-    .lead {
-        font-size:0.8em;
-    }
-}
 .cover-photo{
 	padding:0px !important;
 	background-repeat:no-repeat;
@@ -31,6 +20,7 @@
   font-weight: 900;
   color: white;
   text-transform: uppercase;
+  text-decoration:none;
   margin: 0;
   position: absolute;
   left: 50%;
@@ -39,7 +29,10 @@
   transform: translate(-50%, -50%);
   text-align:center;
 }
-
+.float-couple a{  color: white;
+  text-transform: uppercase;
+  text-decoration:none;
+}
 
 .paypal_btn {
   background: #FFF3DC ;
@@ -69,7 +62,55 @@
   background-image: linear-gradient(to bottom, #FFAF34, #FFF3DC) !important;
 }
 
-.wedding-registry-content{padding:16px 0px 0px 0px;}
+.wedding-registry-content{padding:16px 0px 0px 0px	;}
+
+
+.the-objects {
+    float: left;
+    margin: 2px;
+    width: 150px;
+    overflow: hidden;
+}
+.the-objects .img-block {
+    background-color: #ede9e7;
+    width: 150px;
+    overflow: hidden;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.the-objects .img-block .link {
+    position: absolute;
+}
+.the-objects .img-block .link a img {
+    width: 150px;
+    height: 150px;
+}
+.the-objects .caption {
+  position: relative;
+  top: -76px;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  color: white;
+  font-size: .6em;
+  background-color: black;
+  opacity: 0.20;
+}
+.the-objects  p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1rem;
+  position: relative;
+  top: -43px;
+  z-index: 99;
+  text-align: center;
+}
+
 
 /*==================================================
 =            Bootstrap 3 Media Queries             =
@@ -87,8 +128,12 @@
 			width:100%;
 		}
 
+
     }
     @media only screen and (min-width : 480px) {
+	    .lead {
+        font-size:0.8em;
+    }
 		.panel-body form div select,
 		.panel-body form div input{
 			width:100%;
@@ -98,11 +143,41 @@
 
     /* Small Devices, Tablets */
     @media only screen and (min-width : 768px) {
+	    .lead {
+        font-size:20px;
+    }
 		.panel-body form div select,
 		.panel-body form div input{
 			width:100%;
 		}
-	
+		/*.cover-photo{
+			float: none;
+			margin: 0 auto;
+			width:40%;
+		
+		}
+		.wedding-registry{
+			width:70%;
+		
+		}
+		.float-couple{
+
+		  font-weight: 900;
+		  font-size: 1.5rem;
+		   
+		  position: relative;
+		  font-family: 'Roboto', sans-serif;
+		  color: white;
+		  text-transform: uppercase;
+		  margin: 0;
+		  position: absolute;
+		  left: 50%;
+		  top: 81%;
+		  transform: translate(-50%, -50%);
+		  text-align:center
+
+		}*/
+
     }
 
     /* Medium Devices, Desktops */
@@ -110,14 +185,6 @@
 		.panel-body form div select,
 		.panel-body form div input{
 			width:100%;
-		}
+		}	
 
-    }
-
-    /* Large Devices, Wide Screens */
-    @media only screen and (min-width : 1200px) {
-		.panel-body form div select,
-		.panel-body form div input{
-			width:100%;
-		}
     }

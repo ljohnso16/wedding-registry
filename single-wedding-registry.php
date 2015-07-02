@@ -8,6 +8,8 @@ $thumb_url = $thumb_url_array[0];
 $couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) . ' & ' . get_post_meta( get_the_ID(), 'wedding_registry_field_b', true );
 $new_title = $couple_name .'\'s Wedding Registry';
 $event_date = get_post_meta( get_the_ID(), 'event-date', true); 
+
+$custom_url = '<a href="'.get_post_meta( get_the_ID(), 'wedding_registry_url_title', true).'">'.get_post_meta( get_the_ID(), 'wedding_registry_title', true).'</a>';
 ?>
 
 <title> <?php echo $new_title; ?></title>
@@ -35,14 +37,14 @@ s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
-<div class="">
-	<div class="well">
+	<div class="well wedding-registry">
 		<div class="row">
-	        <div class="col-lg-12 col-md-12 col-xs-12 cover-photo" style="background-image: linear-gradient(rgba(0, 0, 0, 0.30),rgba(0, 0, 0, 0.30)),url(<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>);">
-		        	<?php the_post_thumbnail('large',array('class'=>'','style'=>'width:100%;visibility:hidden;','alt'=> $couple_name )); ?>
-		        
-		        	<p class="float-couple"><?php echo $couple_name; ?></p>
-		        
+	        <div class="col-lg-12 col-md-12 col-xs-12 cover-photo text-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.30),rgba(0, 0, 0, 0.30)),url(<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>);">
+		        	<a href="<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>">
+					<?php the_post_thumbnail('large',array('class'=>'','style'=>'width:100%;visibility:hidden;','alt'=> $couple_name )); ?>
+		       	
+		        	<p class="float-couple text-center"><?php echo $couple_name; ?></p>
+					</a>
 		    </div>
 	        <div class="col-lg-12 col-md-12 col-xs-12 wedding-registry-content">
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><?php the_content();?></div>
@@ -88,6 +90,10 @@ s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 							</div>
 						</div>						
 					</div>
+					<div class="row text-center" >
+					<p><?php echo $custom_url; ?></p>
+					</div>					
+				</div>
 					<div class="row text-center" id="social-row">
 						<div class="col-xs-6 col-md-6 col-lg-6"><p><div class="fb-share-button" data-href="<?php the_permalink(); ?>" data-layout="button_count"></div></p></div>
 						<div class="col-xs-6 col-md-6 col-lg-6"><p><a href="https://twitter.com/share" class="twitter-share-button" data-via="AMT_Travel">Tweet</a></p><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
@@ -112,10 +118,9 @@ s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 			</div>
 		</div>
 	</div>
-</div>
 
 
 <?php 
 	endwhile; 
-	//get_footer(); 
+	get_footer(); 
 ?>

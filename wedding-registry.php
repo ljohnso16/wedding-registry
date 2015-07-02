@@ -39,7 +39,7 @@ function include_reg_template_function( $template_path ) {
         }
         if ( is_archive() )
         {
-            $template_path = plugin_dir_path( __FILE__ ) . '/single-wedding-registry.php';
+            $template_path = plugin_dir_path( __FILE__ ) . '/archive-wedding-registry.php';
         }
     }
     return $template_path;
@@ -73,7 +73,13 @@ function create_wedding_registy() {
         )
     ); 
 }
-
+function events_jquery_datepicker() {
+	wp_enqueue_script('jquery-ui-datepicker');
+	wp_enqueue_script('wedding-registry-datepicker',plugins_url('resources/datepicker.js', __FILE__ ),array('jquery', 'jquery-ui-datepicker'));
+}
+function events_jquery_datepicker_css() {
+	wp_enqueue_style('jquery-ui-datepicker',plugins_url('resources/smoothness/jquery-ui-1.8.11.custom.css', __FILE__ ));
+}
 
 
 register_activation_hook( __FILE__, 'wedding_registry_rewrite_flush' );
