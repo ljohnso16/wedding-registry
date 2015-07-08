@@ -1,5 +1,7 @@
+
 <?php
-wp_head();
+
+
 while ( have_posts() ) : the_post();					
 
 $thumb_id = get_post_thumbnail_id();
@@ -37,6 +39,9 @@ s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
+
+<?php get_header(); ?>
+
 	<div class="well wedding-registry">
 		<div class="row">
 	        <div class="col-lg-12 col-md-12 col-xs-12 cover-photo text-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.30),rgba(0, 0, 0, 0.30)),url(<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>);">

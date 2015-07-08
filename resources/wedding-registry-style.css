@@ -62,7 +62,7 @@
   background-image: linear-gradient(to bottom, #FFAF34, #FFF3DC) !important;
 }
 
-.wedding-registry-content{padding:16px 0px 0px 0px	;}
+.wedding-registry{padding:16px 0px 0px 0px	;}
 
 
 .the-objects {
@@ -73,9 +73,9 @@
 }
 .the-objects .img-block {
     background-color: #ede9e7;
-    width: 150px;
+    width: 300px;
     overflow: hidden;
-    height: 150px;
+    height: 300px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -83,20 +83,21 @@
 .the-objects .img-block .link {
     position: absolute;
 }
+.img-block{width:150px;height:150px;}
 .the-objects .img-block .link a img {
     width: 150px;
     height: 150px;
 }
 .the-objects .caption {
   position: relative;
-  top: -76px;
+  top: -198px;
   left: 0;
   width: 100%;
   height: 48px;
   color: white;
-  font-size: .6em;
+  font-size: 1em;
   background-color: black;
-  opacity: 0.20;
+  opacity: 0.70;
 }
 .the-objects  p {
   font-family: 'Roboto', sans-serif;
@@ -185,6 +186,45 @@
 		.panel-body form div select,
 		.panel-body form div input{
 			width:100%;
-		}	
+		}}	
 
-    }
+.registry-tile {
+  width: 150px;
+  height: 150px;
+
+
+  transition: 1s transform;
+  transform-origin: top center;
+  float: left;
+  margin-right: 10px;
+  position: relative;
+  backface-visibility: hidden;
+}
+
+#registry-hover:hover {
+z-index:999;
+}
+
+.registry-content {
+  width: 300px;
+  height: 300px;
+  transform: scale(.5);
+  transform-origin: top left;
+}
+
+#registry-hover:hover {
+  transform: scale(2);
+}
+
+#registry-hover:hover .registry-overlay {
+  touch-action: auto;
+  transform: scale(1);
+}
+
+.registry-shiftLeft { 
+  transform: translate3d(-40px, 0, 0);
+}
+
+.registry-shiftRight { 
+  transform: translate3d(40px, 0, 0);
+}
