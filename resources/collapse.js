@@ -1,25 +1,19 @@
 var disqus_shortname = 'ljohnso16';
-jQuery(function($) {
-/*
-$(".img-block").hover(
+		console.log('123');
 
-  function () {
-  console.log($(this).offsetParent());
-    $(this).prevAll('div#registry-hover.registry-tile.the-objects').addClass("shiftLeft");
-  },
-  function () {
-//    $(this).prevAll('#registry-hover').removeClass("shiftLeft");
-  }
-);
-$(".img-block").hover(
-  function () {
-	
-    $(this).nextAll('#registry-hover').addClass("shiftRight");
-  },
-  function () {
-    //$(this).nextAll('#registry-hover').removeClass("shiftRight");
-  }
-);*/
+jQuery(function($) {
+		console.log('started');
+
+	$("#registry-hover").hover(
+	  function () {
+		$(this).prevAll().addClass("registry-shiftLeft");
+		$(this).nextAll().addClass("registry-shiftRight");
+	  },
+	  function () {
+		$(this).prevAll().removeClass("registry-shiftLeft");
+		$(this).nextAll().removeClass("registry-shiftRight");
+	  }
+	);
 
 	$(document).on('click', '.panel-heading span.clickable', function(e){
 		var $this = $(this);

@@ -12,7 +12,7 @@ $couple_name = get_post_meta( get_the_ID(), 'wedding_registry_field_a', true ) .
 		<div id="registry-hover" class="registry-tile the-objects">
 			<div class="img-block registry-content" style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID,'thumbnail') ); ?>);"></div>
 				<div class="caption registry-overlay">
-					<?php echo $couple_name;?>
+					<p><?php echo $couple_name;?></p>
 				</div>
 		</div>
 	</a>

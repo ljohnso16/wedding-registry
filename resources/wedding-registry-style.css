@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900);
+p{padding:10px;}
 .clickable{
     cursor: pointer;   
 }
@@ -11,8 +12,8 @@
 	padding:0px !important;
 	background-repeat:no-repeat;
 	
-	background-size: 100% 100%;
-	
+	background-size:100% 100%;
+	width:100%;
 }
 .float-couple{
   position: relative;
@@ -100,13 +101,8 @@
   opacity: 0.70;
 }
 .the-objects  p {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 900;
   color: white;
-  text-transform: uppercase;
   margin: 0;
-  font-size: 1rem;
-  position: relative;
   top: -43px;
   z-index: 99;
   text-align: center;
@@ -217,8 +213,9 @@ z-index:999;
 }
 
 #registry-hover:hover .registry-overlay {
+  opacity: 1;
   touch-action: auto;
-  transform: scale(1);
+  transform: scale(1)
 }
 
 .registry-shiftLeft { 
@@ -227,4 +224,15 @@ z-index:999;
 
 .registry-shiftRight { 
   transform: translate3d(40px, 0, 0);
+}
+
+.give-a-gift{
+padding:10px;
+}
+.panel{
+padding:5px;
+}
+#social-row{
+padding-top:2.5px;
+padding-bottom:2.5px;
 }
