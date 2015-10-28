@@ -10,11 +10,11 @@ function wedding_registry_admin() {
         'display_wedding_registry_date_meta_box',
         'wedding_registry', 'side', 'default'
     );    
-    add_meta_box( 'wedding_registry_link_meta_box',
+   /* add_meta_box( 'wedding_registry_link_meta_box',
         'Wedding Site Link',
         'display_wedding_registry_link_meta_box',
         'wedding_registry', 'normal', 'core'
-    );  
+    );  */
 }
 function display_wedding_registry_link_meta_box( $wedding_registry ) {
     // Retrieve current name based on registry ID

@@ -1,18 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900);
 p{padding:10px;}
 .clickable{
-    cursor: pointer;   
+    cursor: pointer;
 }
-
+.couple-photo{margin: 0 auto;}
 .panel-heading span {
 	margin-top: -20px;
 	font-size: 15px;
 }
 .cover-photo{
-	padding:0px !important;
-	background-repeat:no-repeat;
-	
-	background-size:100% 100%;
 	width:100%;
 }
 .float-couple{
@@ -23,12 +19,17 @@ p{padding:10px;}
   text-transform: uppercase;
   text-decoration:none;
   margin: 0;
+  font-size: 2rem;
+  background-color: black;
+  opacity: .5;
+  /*
+  transform: translate(-50%, -50%);
   position: absolute;
   left: 50%;
   top: 50%;
-  font-size: 2rem;
-  transform: translate(-50%, -50%);
   text-align:center;
+  */
+}
 }
 .float-couple a{  color: white;
   text-transform: uppercase;
@@ -36,35 +37,36 @@ p{padding:10px;}
 }
 
 .paypal_btn {
-  background: #FFF3DC ;
-  background-image: -webkit-linear-gradient(top, #FFF3DC, #FFAF34) !important;
-  background-image: -moz-linear-gradient(top, #FFF3DC, #FFAF34) !important;
-  background-image: -ms-linear-gradient(top, #FFF3DC, #FFAF34) !important;
-  background-image: -o-linear-gradient(top, #FFF3DC, #FFAF34) !important;
-  background-image: linear-gradient(to bottom, #FFF3DC, #FFAF34) !important;
+  background-image: -webkit-linear-gradient(top,#d9edf7 0,#c4e3f3 100%);
+  background-image: -o-linear-gradient(top,#d9edf7 0,#c4e3f3 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#d9edf7),to(#c4e3f3));
+  background-image: linear-gradient(to bottom,#d9edf7 0,#c4e3f3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffc4e3f3', GradientType=0);
+  background-repeat: repeat-x;
+
   -webkit-border-radius: 20 !important;
   -moz-border-radius: 20 !important;
   border-radius: 20px !important;
   font-family: Arial !important;
-  color: #003366 !important;
+  color: #31708f !important;
+	border:none;
+
   font-size: 18px !important;
   padding: 10px 40px 10px 40px !important;
   margin-top:16px;
   font-style: italic !important;
-  
+
 }
 
-.paypal_btn:hover,.paypal_btn:focus {
-  background: #FFAF34 !important;
-  background-image: -webkit-linear-gradient(top, #FFAF34, #FFF3DC) !important;
-  background-image: -moz-linear-gradient(top, #FFAF34, #FFF3DC) !important;
-  background-image: -ms-linear-gradient(top, #FFAF34, #FFF3DC) !important;
-  background-image: -o-linear-gradient(top, #FFAF34, #FFF3DC) !important;
-  background-image: linear-gradient(to bottom, #FFAF34, #FFF3DC) !important;
+.wedding-registry{
+	padding:41px 0px 0px 0px;
+	width:630px;
+	margin:0 auto;
+	/*background:url(./images/tweed.png);*/
 }
-
-.wedding-registry{padding:16px 0px 0px 0px	;}
-
+.wedding-date{
+padding:3px 0px;
+}
 
 .the-objects {
     float: left;
@@ -118,7 +120,7 @@ p{padding:10px;}
 
     /*==========  Mobile First Method  ==========*/
 
-    /* Extra Small Devices, Phones */ 
+    /* Extra Small Devices, Phones */
     @media only screen and (min-width : 320px) {
 		.panel-body form div select,
 		.panel-body form div input{
@@ -135,7 +137,7 @@ p{padding:10px;}
 		.panel-body form div input{
 			width:100%;
 		}
-		
+
     }
 
     /* Small Devices, Tablets */
@@ -151,17 +153,17 @@ p{padding:10px;}
 			float: none;
 			margin: 0 auto;
 			width:40%;
-		
+
 		}
 		.wedding-registry{
 			width:70%;
-		
+
 		}
 		.float-couple{
 
 		  font-weight: 900;
 		  font-size: 1.5rem;
-		   
+
 		  position: relative;
 		  font-family: 'Roboto', sans-serif;
 		  color: white;
@@ -182,7 +184,7 @@ p{padding:10px;}
 		.panel-body form div select,
 		.panel-body form div input{
 			width:100%;
-		}}	
+		}}
 
 .registry-tile {
   width: 150px;
@@ -196,7 +198,10 @@ p{padding:10px;}
   position: relative;
   backface-visibility: hidden;
 }
-
+#registry-row{
+border:none !important;
+/*padding-left:90px !important;*/
+}
 #registry-hover:hover {
 z-index:999;
 }
@@ -218,20 +223,20 @@ z-index:999;
   transform: scale(1)
 }
 
-.registry-shiftLeft { 
+.registry-shiftLeft {
   transform: translate3d(-40px, 0, 0);
 }
 
-.registry-shiftRight { 
+.registry-shiftRight {
   transform: translate3d(40px, 0, 0);
 }
 
 .give-a-gift{
 padding:10px;
+vertical-align: top;
+
 }
-.panel{
-padding:5px;
-}
+
 #social-row{
 padding-top:2.5px;
 padding-bottom:2.5px;

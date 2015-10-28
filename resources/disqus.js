@@ -1,6 +1,8 @@
 <script type="text/javascript">
+
+<script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'ljohnso16';
+    var disqus_shortname = 'amtweddings';
     
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

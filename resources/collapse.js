@@ -1,8 +1,8 @@
 var disqus_shortname = 'ljohnso16';
-		console.log('123');
+		// console.log('123');
 
 jQuery(function($) {
-		console.log('started');
+		// console.log('started');
 
 	$("#registry-hover").hover(
 	  function () {
@@ -19,7 +19,7 @@ jQuery(function($) {
 		var $this = $(this);
 		if($this.hasClass('panel-collapsed')) {
 			$this.parents('.panel').find('.panel-body').slideDown();
-			$this.removeClass('panel-collapsed');		
+			$this.removeClass('panel-collapsed');
 			$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
 			(function() {
 				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -29,7 +29,7 @@ jQuery(function($) {
 		} else {
 			$this.parents('.panel').find('.panel-body').slideUp();
 			$this.addClass('panel-collapsed');
-			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');		
+			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
 		}
 	});
 

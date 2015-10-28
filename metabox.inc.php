@@ -10,13 +10,13 @@ function wedding_registry_admin() {
         'display_wedding_registry_date_meta_box',
         'wedding_registry', 'side', 'default'
     );    
-    add_meta_box( 'wedding_registry_link_meta_box',
+   /* add_meta_box( 'wedding_registry_link_meta_box',
         'Wedding Site Link',
         'display_wedding_registry_link_meta_box',
         'wedding_registry', 'side', 'default'
-    );  
+    );  */
 }
-function display_wedding_registry_link_meta_box( $wedding_registry ) {
+/*function display_wedding_registry_link_meta_box( $wedding_registry ) {
     // Retrieve current name based on registry ID
     $wedding_registry_url_title = esc_html( get_post_meta( $wedding_registry->ID, 'wedding_registry_url_title', true ) );
     $wedding_registry_url = esc_html( get_post_meta( $wedding_registry->ID, 'wedding_registry_url', true ) );
@@ -34,7 +34,7 @@ function display_wedding_registry_link_meta_box( $wedding_registry ) {
 
     </table>
     <?php
-}
+}*/
 function change_image_box()
 {
     remove_meta_box( 'postimagediv', 'wedding_registry', 'side' );
